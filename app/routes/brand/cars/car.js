@@ -1,14 +1,21 @@
 import Route from '@ember/routing/route';
 
-import { hash as resolveAll } from 'rsvp';
-
 export default Route.extend({
-  model({ id }) {
-    return this.store.find('car', id).then(car => {
-      return resolveAll({
-        car,
-        drivers: car.get('drivers'),
-      });
+  model({ car_id: id }) {
+    return this.store.findRecord('car', id);
+  },
+
+  afterModel(model) {
+    return model.get('drivers').then(drivers => {
+      this.set('drivers', drivers);
     });
+  },
+
+  setupController(controller) {
+    this._super(...arguments);
+
+    let { drivers } = this;
+
+    controller.set('drivers', drivers);
   },
 });
