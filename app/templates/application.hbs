@@ -1,5 +1,11 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-<WelcomePage />
-{{!-- Feel free to remove this! --}}
+<ul>
+  {{#each this.model as |brand|}}
+    <li>
+      {{#link-to "brand" brand}}
+        {{brand.name}}
+      {{/link-to}}
+    </li>
+  {{/each}}
+</ul>
 
 {{outlet}}
