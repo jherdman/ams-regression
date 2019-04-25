@@ -6,6 +6,7 @@ export default Route.extend({
   model({ id }) {
     return this.store.find('car', id).then(car => {
       return resolveAll({
+        car,
         drivers: car.get('drivers'),
       });
     });

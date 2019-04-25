@@ -1,7 +1,7 @@
 <ul>
   {{#each this.model as |car|}}
     <li>
-      {{car.name}} {{#link-to "brand.cars.car" car}}View details{{/link-to}}
+      {{car.name}} {{#link-to "brand.cars.car" car.id}}View details{{/link-to}}
     </li>
   {{/each}}
 </ul>
